@@ -1,5 +1,6 @@
 var models = require('../models/models.js');
-
+var search;
+var misearch;
 //GET /quizes/question
 /*exports.question= function(req,res){
 	   models.Quiz.findAll().then(function(quiz){
@@ -23,9 +24,24 @@ var models = require('../models/models.js');
 };*/
 
 exports.index = function(req,res){
-	models.Quiz.findAll().then(function(quizes){
-		console.log(quizes);
-		res.render('quizes/index.ejs', {quizes: quizes});
+	misearch= req.query.search;
+	search='%';
+	if(misearch === undefined)
+		misearch='.';
+	else{
+		misearch=misearch.replace(/[^\w]/g,'%');
+		search=search.concat(misearch);
+		search=search.concat('%');
+		misearch=' para "'+ misearch + '".';
+
+	}
+
+	models.Quiz.findAll({
+		where:["pregunta like ?", search],
+		order:'pregunta ASC'
+	}).then(function(quizes){
+		//console.log(quizes);
+		res.render('quizes/index.ejs', {quizes: quizes, misearch: misearch, search: search});
 	})
 };
 
