@@ -1,5 +1,4 @@
 var path= require('path');
-var carlos= "Hola";
 
 var url= process.env.DATABASE_URL.match(/(.*)\:\/\/(.*?)\:(.*)@(.*)\:(.*)\/(.*)/);
 var DB_name= (url[6] || null);
@@ -34,6 +33,9 @@ sequelize.sync().then(function(){
 		if(count===0){
 			Quiz.create({pregunta: 'Capital de Italia',
 						 respuesta: 'Roma'
+		});
+			Quiz.create({pregunta: 'Capital de Portugal',
+						 respuesta: 'Lisboa'
 		})
 		.then(function(){console.log('Base de datos inicializada')});
 		};
