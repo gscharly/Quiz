@@ -1,7 +1,7 @@
 var models = require('../models/models.js');
 var search;
 var misearch;
-var preba;
+
 //GET /quizes/question
 /*exports.question= function(req,res){
 	   models.Quiz.findAll().then(function(quiz){
