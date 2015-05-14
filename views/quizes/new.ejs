@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	   <meta charset="utf-8">
+       <title>Preguntas </title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" media="screen">
+       <link rel="stylesheet" href="/stylesheets/style.css">
+       <link rel="stylesheet" type="text/css" href="/styleheets/wide.css" media="only screen and (min-width: 530px) and (min-device-width: 481px)">
+       <link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px)" href="/stylesheets/smartphone.css">
+       <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+Añadir pregunta: <p>
+<form method="post" action="/quizes/create">
+	
+	<% include _form.ejs %>
+</form>
+
+</body>
+</html>
