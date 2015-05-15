@@ -17,7 +17,7 @@ router.post('/quizes/create', quizController.create);
 //router.get('/quizes/question', quizController.question);
 //router.get('/quizes/answer', quizController.answer);
 router.get('/author', function(req,res){
-       res.render('author');
+       res.render('author', {errors: []});
 })
 
 
