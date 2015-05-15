@@ -16,7 +16,8 @@
   "dependencies": {
     "express": "~4.0.0",
     "express-partials": "^0.3.0",
-    "sequelize": "~1.7.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^2.1.0",
     "static-favicon": "~1.0.0",
     "morgan": "~1.0.0",
     "pg": "^4.1.1",
