@@ -3,7 +3,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
-
+var statsController = require('../controllers/statistics_controller');
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Bienvenido a Quiz', errors: [] });
@@ -29,9 +29,13 @@ router.delete('/quizes/:quizId(\\d+)', sessionController.loginRequired, quizCont
 //Rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments', commentController.create);
+//Ruta de autores
 router.get('/author', function(req,res){
        res.render('author', {errors: []});
-})
+});
+
+//Ruta de estadisticas
+router.get('/quizes/statistics',statsController.stats);
 
 
 module.exports = router;
