@@ -15,6 +15,13 @@ Pregunta: <%= quiz.pregunta %> <p>
 </p>
 </form>
 
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+
+<p><strong>Comentarios:</strong></p>
+<%for(index in quiz.Comments){%>
+	<p>- <%=quiz.Comments[index].texto%></p>
+<%}%>
+
 </body>
 
 </html>
