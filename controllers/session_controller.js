@@ -20,7 +20,7 @@ exports.create= function(req,res){
 
 	var login= req.body.login;
 	var password = req.body.password;
-
+	var tiempo = new Date();
 	var userController=  require('./user_controller');
 	userController.autenticar(login,password,function(error,user){
 		if(error){
@@ -30,7 +30,7 @@ exports.create= function(req,res){
 		}
 
 		//Crear req.session.user y guardar campos id y username
-		req.session.user={id:user.id, username:user.username};
+		req.session.user={id:user.id, username:user.username, tiempo:tiempo};
 		res.redirect("/");
 	});
 };

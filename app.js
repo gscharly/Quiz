@@ -27,9 +27,33 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//logout
+app.use(function(req,res,next){
+    var actual = new Date();
+    //console.log(actual);
+    if(req.session.user){
+        if(req.session.user.tiempo){
+        var sesion = new Date(req.session.user.tiempo);
+        //console.log( "Sesion: " +sesion);
+        var difDate= actual - sesion;
+        //console.log(difDate);
+        if(difDate>120000){
+            delete req.session.user;
+            res.redirect("/");
+            console.log("Han pasado 2 min");
+            next();
+            return;
+            }
+        }
+            //req.session.user.tiempo= new Date();
+    }
+    next();
+    
+});
 //Helpers dinamicos
 app.use(function(req,res,next){
-
+   
     //guardar path en session.redir para despues de login
     if(!req.path.match(/\/login|\/logout/)){
         req.session.redir= req.path;
@@ -39,6 +63,8 @@ app.use(function(req,res,next){
     res.locals.session= req.session;
     next();
 });
+
+
 
 app.use('/', routes);
 //app.use('/users', users);
