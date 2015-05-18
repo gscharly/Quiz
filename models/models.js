@@ -50,7 +50,7 @@ exports.User=User;
 
 //crea e inicializa tabla de preguntas en DB
 sequelize.sync().then(function(){
-	User.count().then(function(count){
+	/*User.count().then(function(count){
 		if(count===0){
 			User.bulkCreate(
 				[ {username: 'admin', password: '1234', isAdmin: true},
@@ -70,8 +70,8 @@ sequelize.sync().then(function(){
 
 				});
 		};
-	});
-	/*Quiz.count().then(function(count){
+	});*/
+	Quiz.count().then(function(count){
 		if(count===0){
 			Quiz.create({pregunta: 'Capital de Italia',
 						 respuesta: 'Roma'
@@ -81,5 +81,5 @@ sequelize.sync().then(function(){
 		})
 		.then(function(){console.log('Base de datos inicializada')});
 		};
-	});*/
+	});
 });
