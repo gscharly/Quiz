@@ -9,7 +9,7 @@ var dialect = (url[1]||null);
 var port= (url[5]||null);
 var host= (url[4]||null);
 var storage = process.env.DATABASE_STORAGE;
-var prueba;
+
 //Cargar Modelo ORM
 var Sequelize = require('sequelize');
 
