@@ -30,7 +30,7 @@ exports.create= function(req,res){
 		}
 
 		//Crear req.session.user y guardar campos id y username
-		req.session.user={id:user.id, username:user.username, tiempo:tiempo};
+		req.session.user={id:user.id, username:user.username, tiempo:tiempo, isAdmin:user.isAdmin};
 		res.redirect("/");
 	});
 };
