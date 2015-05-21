@@ -33,6 +33,12 @@ exports.load= function(req,res,next, quizId){
 };
 
 exports.index = function(req,res){
+	var options = {};
+	if(req.user){
+		options.where= {UserId: req.user.id};
+		options.order= 'pregunta ASC';
+	} else{
+
 	misearch= req.query.search;
 	search='%';
 	if(misearch === undefined)
@@ -44,11 +50,13 @@ exports.index = function(req,res){
 		misearch=' para "'+ misearch + '".';
 
 	}
+	options.where = ["pregunta like ?", search];
+		options.order = 'pregunta ASC';
+		options.include = [{model: models.Comment}];
 
-	models.Quiz.findAll({
-		where:["pregunta like ?", search],
-		order:'pregunta ASC'
-	}).then(function(quizes){
+}
+
+	models.Quiz.findAll(options).then(function(quizes){
 		//console.log(quizes);
 		res.render('quizes/index.ejs', {quizes: quizes, misearch: misearch, search: search, errors: []});
 	})
