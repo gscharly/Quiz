@@ -27,7 +27,13 @@
        
           </td>
 
-          <%if(favs.indexOf(quizes[i].id)>=0){%>
+         
+          <%}
+          }%>
+
+          <%if(session.user){%>
+           <%if(favs.indexOf(quizes[i].id)>=0){%>
+          
           <td>
             <form method="post" action="/user/<%=session.user.id%>/favourites/<%= quizes[i].id%>?_method=delete">
                <button type="submit"  onclick="return confirm('Unfavear: <%= quizes[i].pregunta %>');">
@@ -55,8 +61,7 @@
 
         </td>
         <%}%>
-          <%}
-          }%>
+        <%}%>
         </tr>
 
       <% } %>
