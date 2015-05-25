@@ -64,6 +64,13 @@ app.use(function(req,res,next){
         req.session.redir= req.path;
     }
 
+    if(req.path.match(/\/user\/[0-9]\/favourites/)){
+        if(!req.path.match(/favourites\/[0-9]/)){
+            req.session.redir=req.path;
+        }
+        
+    }
+
     //hacer visible req.sesssion en las vistas
     res.locals.session= req.session;
     next();

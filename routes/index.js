@@ -6,7 +6,9 @@ var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var statsController = require('../controllers/statistics_controller');
 var userController = require('../controllers/user_controller');
-var prueba;
+var favController = require('../controllers/favourite_controller');
+
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Bienvenido a Quiz', errors: [] });
@@ -52,5 +54,12 @@ router.put('/user/:userId(\\d+)', sessionController.loginRequired,userController
 router.delete('/user/:userId(\\d+)', sessionController.loginRequired,userController.ownershipRequired, userController.destroy);
 router.get('/user/:userId(\\d+)/quizes', quizController.index);
 
+//Rutas de favoritos
+//PUT /user/:userId/favourites/:quizId
+router.put('/user/:userId(\\d+)/favourites/:quizId(\\d+)',sessionController.loginRequired, favController.new);
+//DELETE /user/:userId/favourites/:quizId
+router.delete('/user/:userId(\\d+)/favourites/:quizId(\\d+)',sessionController.loginRequired, favController.destroy);
+//GET /user/:userId/favourites
+router.get('/user/:userId(\\d+)/favourites',sessionController.loginRequired, favController.show);
 
 module.exports = router;

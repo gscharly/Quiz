@@ -7,8 +7,7 @@
   </head>
   <body>
 
-    <h3>Bienvenido a Quiz</h3>
-    <p>El portal donde podra crear sus propios juegos!</p>
+   
     
 
     <table >
@@ -24,7 +23,38 @@
           borrar
           </button>
           </form>
+
+       
           </td>
+
+          <%if(favs.indexOf(quizes[i].id)>=0){%>
+          <td>
+            <form method="post" action="/user/<%=session.user.id%>/favourites/<%= quizes[i].id%>?_method=delete">
+               <button type="submit"  onclick="return confirm('Unfavear: <%= quizes[i].pregunta %>');">
+          UnFav
+          </button>
+
+            </form>
+             <span class="glyphicon glyphicon-star"></span>
+             
+        
+
+        </td>
+        
+        <% } else{%>
+          <td>
+            <form method="post" action="/user/<%=session.user.id%>/favourites/<%= quizes[i].id%>?_method=put">
+               <button type="submit">
+          Fav
+          </button>
+
+            </form>
+             
+             <span class="glyphicon glyphicon-star-empty"></span>
+        
+
+        </td>
+        <%}%>
           <%}
           }%>
         </tr>

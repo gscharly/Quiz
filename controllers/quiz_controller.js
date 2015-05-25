@@ -34,6 +34,8 @@ exports.load= function(req,res,next, quizId){
 
 exports.index = function(req,res){
 	var options = {};
+	var i;
+	var favs= [];
 	if(req.user){
 		options.where= {UserId: req.user.id};
 		options.order= 'pregunta ASC';
@@ -56,9 +58,20 @@ exports.index = function(req,res){
 
 }
 
+//favoritos
+if(req.session.user){
+	models.favourites.findAll({
+		where:{UserId: Number(req.session.user.id)}
+	}).then(function(favo){
+		for(i=0; i<favo.length;i++){
+			favs.push(favo[i].dataValues.QuizId);
+		}
+	})
+}
+
 	models.Quiz.findAll(options).then(function(quizes){
 		//console.log(quizes);
-		res.render('quizes/index.ejs', {quizes: quizes, misearch: misearch, search: search, errors: []});
+		res.render('quizes/index.ejs', {quizes: quizes, misearch: misearch, search: search, errors: [], favs:favs});
 	})
 };
 

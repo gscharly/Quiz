@@ -31,12 +31,12 @@ exports.create= function(req,res){
 
 		//Crear req.session.user y guardar campos id y username
 		req.session.user={id:user.id, username:user.username, tiempo:tiempo, isAdmin:user.isAdmin};
-		res.redirect("/");
+		res.redirect(req.session.redir.toString());
 	});
 };
 
 //DELETE /logout
 exports.destroy = function(req,res){
 	delete req.session.user;
-	res.redirect("/");
+	res.redirect(req.session.redir.toString());
 };
