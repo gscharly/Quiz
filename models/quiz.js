@@ -12,7 +12,12 @@ module.exports = function(sequelize, DataTypes){
 			  },
 			  image: {
 			  	type: DataTypes.STRING
+			  },
+			  tema: {
+			  	type: DataTypes.STRING,
+			  	
 			  }
+
 			}
 		);
 }
